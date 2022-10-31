@@ -16,4 +16,10 @@ class Node
      * @var Node
      */
     protected Node $next;
+
+    function __construct(mixed $value, ?Node $next)
+    {
+        $this->value = $value;
+        $this->next  = $next;
+    }
 }

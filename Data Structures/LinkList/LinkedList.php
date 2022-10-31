@@ -26,22 +26,36 @@ class LinkedList implements LinkedListInterface
 
     public function index(): array
     {
-        return [];
+        $allNodeArr = [];
+
+        while ($this->tail === null) {
+            $allNodeArr[] = $this->head;
+        }
+        
+        return $allNodeArr;
     }
 
     public function search(mixed $value): ?Node
     {
-        return new Node();
+        return new Node(1, null);
     }
 
-    public function insert(mixed $value): LinkedListInterface
+    public function insert(mixed $value): bool
     {
-        return $this;
+        if ($this->head === null) {
+            $this->head = new Node($value, null);
+        } else {
+            while ($this->tail === null) {
+                $oldNode = $this->head;
+                $this->head = new Node($value, $oldNode);
+            }
+        }
+        return $this->head->value === $value;
     }
 
-    public function append(int $index, mixed $value): LinkedListInterface
+    public function append(int $index, mixed $value): bool
     {
-        return $this;
+        return true;
     }
 
     public function removeFirst(): bool

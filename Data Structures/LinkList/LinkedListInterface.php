@@ -29,7 +29,7 @@ interface LinkedListInterface
      * @param mixed $value
      * @return LinkedListInterface
      */
-    public function insert(mixed $value): LinkedListInterface;
+    public function insert(mixed $value): bool;
 
     /**
      * Append the data behind the paramter index.
@@ -38,7 +38,7 @@ interface LinkedListInterface
      * @param mixed $value
      * @return LinkedListInterface
      */
-    public function append(int $index, mixed $value):LinkedListInterface;
+    public function append(int $index, mixed $value): bool;
 
     /**
      * Remove the first node.
