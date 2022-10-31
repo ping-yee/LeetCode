@@ -13,16 +13,21 @@ class LinkedList implements LinkedListInterface
     /**
      * The head node of LinkedList.
      *
-     * @var [type]
+     * @var Node
      */
     protected $head;
 
     /**
      * The tail node of LinkedList.
      *
-     * @var [type]
+     * @var Node
      */
     protected $tail;
+
+    public function index(): array
+    {
+        return [];
+    }
 
     public function search(mixed $value): ?Node
     {
