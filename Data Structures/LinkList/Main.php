@@ -12,4 +12,10 @@ $list->insert(1);
 
 $list->insert("23");
 
+$list->insert("34");
+
+print_r($list->index());
+
+$list->removeFirst();
+
 print_r($list->index());

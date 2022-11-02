@@ -17,6 +17,8 @@ class LinkedList implements LinkedListInterface
      */
     protected $head;
 
+    protected static $count;
+
     function __construct()
     {
         $this->head = null;
@@ -28,7 +30,6 @@ class LinkedList implements LinkedListInterface
         $current    = $this->head;
 
         while ($current != null) {
-            echo $current->getValue() . '->';
             array_push($allNodeArr, $current->getValue());
             $current = $current->getNext();
         }
@@ -49,7 +50,7 @@ class LinkedList implements LinkedListInterface
             $current = $current->getNext();
             $count++;
         }
-        return new Node(1, null);
+        return null;
     }
 
     public function insert(mixed $value): bool
@@ -71,6 +72,12 @@ class LinkedList implements LinkedListInterface
 
     public function removeFirst(): bool
     {
+        if ($this->head === null) {
+            // Throw some exception.
+            return true;
+        } else {
+            $this->head = $this->head->getNext();
+        }
         return true;
     }
 
