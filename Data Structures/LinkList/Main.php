@@ -10,4 +10,6 @@ $list = new LinkedList();
 
 $list->insert(1);
 
+$list->insert("23");
+
 print_r($list->index());

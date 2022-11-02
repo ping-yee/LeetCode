@@ -17,19 +17,20 @@ class LinkedList implements LinkedListInterface
      */
     protected $head;
 
-    /**
-     * The tail node of LinkedList.
-     *
-     * @var Node
-     */
-    protected $tail;
+    function __construct()
+    {
+        $this->head = null;
+    }
 
     public function index(): array
     {
         $allNodeArr = [];
+        $current    = $this->head;
 
-        while ($this->tail === null) {
-            $allNodeArr[] = $this->head;
+        while ($current != null) {
+            echo $current->getValue() . '->';
+            array_push($allNodeArr, $current->getValue());
+            $current = $current->getNext();
         }
         
         return $allNodeArr;
@@ -37,6 +38,17 @@ class LinkedList implements LinkedListInterface
 
     public function search(mixed $value): ?Node
     {
+        $current = $this->head;
+        $count   = 0;
+
+        while ($current != null) {
+            if ($current->value === $value) {
+                return $current;
+            }
+
+            $current = $current->getNext();
+            $count++;
+        }
         return new Node(1, null);
     }
 
@@ -45,12 +57,11 @@ class LinkedList implements LinkedListInterface
         if ($this->head === null) {
             $this->head = new Node($value, null);
         } else {
-            while ($this->tail === null) {
-                $oldNode = $this->head;
-                $this->head = new Node($value, $oldNode);
-            }
+            $current = $this->head;
+            $newNode = new Node($value, $current);
+            $this->head = &$newNode;
         }
-        return $this->head->value === $value;
+        return $this->head->getValue() === $value;
     }
 
     public function append(int $index, mixed $value): bool
