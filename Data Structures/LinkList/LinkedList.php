@@ -62,11 +62,25 @@ class LinkedList implements LinkedListInterface
             $newNode = new Node($value, $current);
             $this->head = &$newNode;
         }
+        
+        self::$count++;
+        
         return $this->head->getValue() === $value;
     }
 
     public function append(int $index, mixed $value): bool
     {
+        if ($this->head === null || $index >) {
+            return false;
+        }
+
+        $count = 0;
+        $previous = $this->head;
+        $current  = $this->head;
+        $next     = $current->getNext();
+        while ($index > $count) {
+                
+        }
         return true;
     }
 
@@ -78,6 +92,8 @@ class LinkedList implements LinkedListInterface
         } else {
             $this->head = $this->head->getNext();
         }
+
+        self::$count--;
         return true;
     }
 
