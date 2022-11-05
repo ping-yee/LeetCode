@@ -16,12 +16,13 @@ interface LinkedListInterface
     public function index(): array;
 
     /**
-     * Searching the node index by parameter value.
+     * Searching the node index by parameter value,
+     * and return hint of index and node into array.
      *
      * @param mixed $value
-     * @return Node|null
+     * @return array
      */
-    public function search(mixed $value): ?Node;
+    public function search(mixed $value): array;
 
     /**
      * Insert the vaule into the first node.
@@ -29,16 +30,16 @@ interface LinkedListInterface
      * @param mixed $value
      * @return LinkedListInterface
      */
-    public function insert(mixed $value): LinkedListInterface;
+    public function insert(mixed $value): bool;
 
     /**
-     * Append the data behind the paramter index.
+     * Append the data behind the paramter index node.
      *
      * @param integer $index
      * @param mixed $value
      * @return LinkedListInterface
      */
-    public function append(int $index, mixed $value):LinkedListInterface;
+    public function append(int $index, mixed $value): bool;
 
     /**
      * Remove the first node.
