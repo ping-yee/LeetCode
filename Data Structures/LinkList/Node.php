@@ -17,7 +17,7 @@ class Node
      */
     protected ?Node $next;
 
-    function __construct(mixed $value, ?Node $next)
+    public function __construct(mixed $value, ?Node $next)
     {
         $this->value = $value;
         $this->next  = $next;
@@ -52,7 +52,7 @@ class Node
     public function setValue(mixed $value): Node
     {
         $this->value = $value;
-        
+
         return $this;
     }
 

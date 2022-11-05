@@ -15,7 +15,7 @@ class LinkedList implements LinkedListInterface
      *
      * @var Node
      */
-    protected $head;
+    protected $head = null;
 
     /**
      * The length of current node list.
@@ -24,9 +24,8 @@ class LinkedList implements LinkedListInterface
      */
     public static $length;
 
-    function __construct()
+    public function __construct()
     {
-        $this->head = null;
     }
 
     public function index(): array
@@ -38,7 +37,7 @@ class LinkedList implements LinkedListInterface
             array_push($allNodeArr, $current->getValue());
             $current = $current->getNext();
         }
-        
+
         return $allNodeArr;
     }
 
@@ -68,9 +67,9 @@ class LinkedList implements LinkedListInterface
             $newNode = new Node($value, $current);
             $this->head = &$newNode;
         }
-        
+
         self::$length++;
-        
+
         return $this->head->getValue() === $value;
     }
 
@@ -91,7 +90,7 @@ class LinkedList implements LinkedListInterface
             }
 
             $current = $current->getNext();
-            
+
             $count++;
         }
 
