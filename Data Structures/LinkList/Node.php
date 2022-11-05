@@ -42,4 +42,30 @@ class Node
     {
         return $this->next;
     }
+
+    /**
+     * Set the value of currnet node.
+     *
+     * @param mixed $value
+     * @return Node
+     */
+    public function setValue(mixed $value): Node
+    {
+        $this->value = $value;
+        
+        return $this;
+    }
+
+    /**
+     * Set the next node of current node.
+     *
+     * @param Node|null $node
+     * @return Node
+     */
+    public function setNext(?Node $node): Node
+    {
+        $this->next = $node;
+
+        return $this;
+    }
 }

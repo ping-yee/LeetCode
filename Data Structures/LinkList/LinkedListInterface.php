@@ -32,7 +32,7 @@ interface LinkedListInterface
     public function insert(mixed $value): bool;
 
     /**
-     * Append the data behind the paramter index.
+     * Append the data behind the paramter index node.
      *
      * @param integer $index
      * @param mixed $value

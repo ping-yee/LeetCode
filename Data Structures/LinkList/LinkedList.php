@@ -17,7 +17,12 @@ class LinkedList implements LinkedListInterface
      */
     protected $head;
 
-    protected static $count;
+    /**
+     * The length of current node list.
+     *
+     * @var int
+     */
+    public static $length;
 
     function __construct()
     {
@@ -43,13 +48,14 @@ class LinkedList implements LinkedListInterface
         $count   = 0;
 
         while ($current != null) {
-            if ($current->value === $value) {
+            if ($current->getValue() === $value) {
                 return $current;
             }
 
             $current = $current->getNext();
             $count++;
         }
+
         return null;
     }
 
@@ -63,24 +69,32 @@ class LinkedList implements LinkedListInterface
             $this->head = &$newNode;
         }
         
-        self::$count++;
+        self::$length++;
         
         return $this->head->getValue() === $value;
     }
 
     public function append(int $index, mixed $value): bool
     {
-        if ($this->head === null || $index >) {
+        if ($this->head === null || $index > self::$length - 1) {
+            // throw some exception.
             return false;
         }
 
-        $count = 0;
-        $previous = $this->head;
+        $count    = 0;
         $current  = $this->head;
-        $next     = $current->getNext();
-        while ($index > $count) {
-                
+
+        while ($index >= $count) {
+            if ($count === $index) {
+                $current->setNext(new Node($value, $current->getNext()));
+                return true;
+            }
+
+            $current = $current->getNext();
+            
+            $count++;
         }
+
         return true;
     }
 
@@ -93,12 +107,35 @@ class LinkedList implements LinkedListInterface
             $this->head = $this->head->getNext();
         }
 
-        self::$count--;
+        self::$length--;
         return true;
     }
 
     public function remove(int $index): bool
     {
+        if ($this->head === null || $index > self::$length - 1) {
+            // throw some exception.
+            return false;
+        }
+
+        $count   = 0;
+        $prevous = $this->head;
+        $current = $this->head;
+
+        while ($index >= $count) {
+            if ($index === $count) {
+                $prevous->setNext($current->getNext());
+            }
+
+            if ($count === 0) {
+                $current = $current->getNext();
+            } else {
+                $prevous = $current;
+                $current = $current->getNext();
+            }
+
+            $count++;
+        }
         return true;
     }
 }
