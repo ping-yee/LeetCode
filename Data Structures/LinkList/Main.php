@@ -28,4 +28,4 @@ $list->remove(2);
 
 print_r($list->index());
 
-print_r($list->search("34"));
+print_r(key($list->search("234")) . PHP_EOL);

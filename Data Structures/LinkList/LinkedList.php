@@ -24,10 +24,6 @@ class LinkedList implements LinkedListInterface
      */
     public static $length;
 
-    public function __construct()
-    {
-    }
-
     public function index(): array
     {
         $allNodeArr = [];
@@ -41,21 +37,22 @@ class LinkedList implements LinkedListInterface
         return $allNodeArr;
     }
 
-    public function search(mixed $value): ?Node
+    public function search(mixed $value): array
     {
         $current = $this->head;
         $count   = 0;
+        $result  = [];
 
         while ($current != null) {
             if ($current->getValue() === $value) {
-                return $current;
+                $result[$count] = $current;
             }
 
             $current = $current->getNext();
             $count++;
         }
 
-        return null;
+        return $result;
     }
 
     public function insert(mixed $value): bool
@@ -86,7 +83,6 @@ class LinkedList implements LinkedListInterface
         while ($index >= $count) {
             if ($count === $index) {
                 $current->setNext(new Node($value, $current->getNext()));
-                return true;
             }
 
             $current = $current->getNext();
@@ -94,7 +90,9 @@ class LinkedList implements LinkedListInterface
             $count++;
         }
 
-        return true;
+        $searchArr = $this->search($value);
+
+        return isset($searchArr[$index + 1]);
     }
 
     public function removeFirst(): bool
@@ -117,9 +115,9 @@ class LinkedList implements LinkedListInterface
             return false;
         }
 
-        $count   = 0;
-        $prevous = $this->head;
-        $current = $this->head;
+        $count    = 0;
+        $prevous  = $this->head;
+        $current  = $this->head;
 
         while ($index >= $count) {
             if ($index === $count) {
